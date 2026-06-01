@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Press AI Sender",
+  "version": "1.0.0",
+  "description": "Отправляет выделенный текст с любой страницы в Press AI Dashboard.",
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://localhost:8000/*",
+    "http://127.0.0.1:8000/*",
+    "http://localhost:6345/*",
+    "http://127.0.0.1:6345/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "file:///*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Press AI",
+    "default_popup": "popup.html"
+  }
+}

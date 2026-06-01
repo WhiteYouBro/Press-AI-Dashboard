@@ -1,0 +1,109 @@
+#press-ai-floating-send-button,
+#press-ai-floating-copy-button {
+  position: fixed;
+  right: 22px;
+  z-index: 2147483647;
+  max-width: min(260px, calc(100vw - 32px));
+  border: 1px solid rgba(255, 253, 248, 0.16);
+  border-radius: 999px;
+  background: #23211e;
+  color: #f7f5f0;
+  box-shadow: 0 18px 44px rgba(35, 33, 30, 0.28);
+  padding: 13px 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+
+#press-ai-floating-send-button {
+  bottom: 22px;
+}
+
+#press-ai-floating-copy-button {
+  bottom: 78px;
+  background: #fffdf8;
+  color: #23211e;
+  border-color: #ded9cf;
+}
+
+#press-ai-floating-send-button:hover:not(:disabled),
+#press-ai-floating-copy-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: #a83232;
+  color: #f7f5f0;
+  box-shadow: 0 22px 54px rgba(35, 33, 30, 0.34);
+}
+
+#press-ai-floating-send-button:focus-visible,
+#press-ai-floating-copy-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(168, 50, 50, 0.22), 0 18px 44px rgba(35, 33, 30, 0.28);
+}
+
+#press-ai-floating-send-button:disabled,
+#press-ai-floating-copy-button:disabled {
+  cursor: wait;
+  opacity: 0.78;
+}
+
+#press-ai-floating-toast {
+  position: fixed;
+  right: 22px;
+  bottom: 138px;
+  z-index: 2147483647;
+  width: min(340px, calc(100vw - 32px));
+  border: 1px solid #ded9cf;
+  border-radius: 16px;
+  background: #fffdf8;
+  color: #23211e;
+  box-shadow: 0 18px 44px rgba(35, 33, 30, 0.2);
+  padding: 12px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+#press-ai-floating-toast.press-ai-toast-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#press-ai-floating-toast[data-type="success"] {
+  border-color: #bbf7d0;
+  background: #ecfdf3;
+  color: #14532d;
+}
+
+#press-ai-floating-toast[data-type="error"] {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #7f1d1d;
+}
+
+@media (max-width: 520px) {
+  #press-ai-floating-send-button {
+    right: 16px;
+    bottom: 16px;
+    max-width: calc(100vw - 32px);
+  }
+
+  #press-ai-floating-copy-button {
+    right: 16px;
+    bottom: 72px;
+    max-width: calc(100vw - 32px);
+  }
+
+  #press-ai-floating-toast {
+    right: 16px;
+    bottom: 128px;
+  }
+}

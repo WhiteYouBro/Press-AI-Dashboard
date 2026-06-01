@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Press AI Sender</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="panel">
+        <header class="header">
+          <div class="header-row">
+            <div>
+              <p class="eyebrow">Press AI</p>
+              <h1 class="title">Отправка материала</h1>
+            </div>
+            <span id="captureBadge" class="badge">нет выделения</span>
+          </div>
+        </header>
+
+        <form id="pressAiForm" class="form">
+          <label class="field">
+            <span class="label">Backend URL</span>
+            <input
+              id="backendUrl"
+              type="url"
+              placeholder="http://localhost:6345"
+              class="control"
+              autocomplete="off"
+            />
+          </label>
+
+          <label class="field">
+            <span class="label">API-токен авторизации</span>
+            <input
+              id="apiToken"
+              type="password"
+              placeholder="Token из Django REST Framework"
+              class="control"
+              autocomplete="off"
+            />
+          </label>
+
+          <label class="field">
+            <span class="label">Заголовок новости</span>
+            <input
+              id="title"
+              type="text"
+              maxlength="500"
+              placeholder="Например: В Госдуме обсудили новый законопроект"
+              class="control"
+            />
+          </label>
+
+          <label class="field">
+            <span class="label">Рубрика</span>
+            <select
+              id="rubric"
+              class="control"
+            >
+              <option value="Политика">Политика</option>
+              <option value="Экономика">Экономика</option>
+              <option value="Наука">Наука</option>
+              <option value="Культура">Культура</option>
+              <option value="Спорт">Спорт</option>
+              <option value="Технологии">Технологии</option>
+              <option value="Общество">Общество</option>
+              <option value="Мир">Мир</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field-header">
+              <span>Текст статьи</span>
+              <span id="textCounter" class="counter">0 симв.</span>
+            </span>
+            <textarea
+              id="body"
+              rows="8"
+              placeholder="Выделите текст на странице и нажмите правой кнопкой: Отправить в Press AI"
+              class="control"
+            ></textarea>
+          </label>
+
+          <div id="sourceBlock" class="source hidden">
+            <div class="source-title">Источник</div>
+            <div id="sourceUrl" class="source-url"></div>
+          </div>
+
+          <div id="status" class="status hidden"></div>
+
+          <div class="actions">
+            <button
+              id="sendRawNews"
+              type="button"
+              class="button button-primary"
+            >
+              Отправить в RawNews
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

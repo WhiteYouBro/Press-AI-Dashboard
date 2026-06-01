@@ -1,0 +1,139 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Монохром + Кровь */
+  --background: #f7f7f7;        /* почти белый, чуть тёплый */
+  --foreground: #0a0a0a;        /* антрацит */
+  --surface: #ffffff;
+  --surface-2: #f0f0f0;
+  --surface-3: #e6e6e6;
+  --line: #d4d4d4;
+  --line-strong: #a3a3a3;
+  --muted-text: #6b6b6b;
+  --blood: #b00020;             /* кровь — единственный акцент */
+  --blood-deep: #7a0014;
+  --blood-ink: #ffffff;
+
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+  --primary: #0a0a0a;
+  --primary-foreground: #ffffff;
+  --secondary: #f0f0f0;
+  --secondary-foreground: #0a0a0a;
+  --muted: #f0f0f0;
+  --muted-foreground: #6b6b6b;
+  --border: #d4d4d4;
+  --input: #d4d4d4;
+  --ring: #b00020;
+  --destructive: #b00020;
+  --destructive-foreground: #ffffff;
+  --radius: 0.375rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-syne), 'Syne Fallback', system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), 'Cormorant Garamond Fallback', Georgia, serif;
+  --font-mono: var(--font-jb-mono), ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-muted-text: var(--muted-text);
+  --color-blood: var(--blood);
+  --color-blood-deep: var(--blood-deep);
+  --color-blood-ink: var(--blood-ink);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html, body {
+    background: var(--background);
+    color: var(--foreground);
+  }
+  body {
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--blood);
+    color: var(--blood-ink);
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .caret-blink::after {
+    content: '';
+    display: inline-block;
+    width: 0.5ch;
+    height: 1em;
+    background: currentColor;
+    margin-left: 2px;
+    vertical-align: -0.15em;
+    animation: blink 1s steps(2) infinite;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .animate-ticker {
+    animation: ticker 60s linear infinite;
+  }
+
+  @keyframes pulse-blood {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+  .pulse-blood {
+    animation: pulse-blood 1.6s ease-in-out infinite;
+  }
+
+  /* тонкая «графитная» сетка фона */
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(10,10,10,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10,10,10,0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .ring-blood {
+    box-shadow: 0 0 0 1px var(--blood);
+  }
+}
